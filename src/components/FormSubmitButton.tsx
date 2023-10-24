@@ -1,7 +1,7 @@
 "use client";
 
+import ReactDom from "react-dom"
 import { ComponentProps } from "react";
-import { useFormState } from "react-dom";
 
 //You're advised to use an interface until you need a 'type'. Normal convention. But we need to use type because we want to extend this type and we can't do it with interfaces.
 
@@ -16,7 +16,18 @@ export default function FormSubmitButton({
 	className,
 	...props
 }: FormSubmitButtonProps) {
-	const { pending } = useFormState(false);
+
+	// What the hell is this block of code???
+	const useFormStatus = (ReactDom as any as {
+		experimental_useFormStatus: () => {
+			pending: boolean;
+			data: FormData | null;
+			method: 'get' | 'post' | null;
+			action: ((formData: FormData) => Promise<void>) | null;
+		}
+	}).experimental_useFormStatus;
+
+	const { pending } = useFormStatus()
 
 	return (
 		<button
