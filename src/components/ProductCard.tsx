@@ -29,7 +29,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 					{product.name} {isNew && <div className="badge badge-secondary">NEW</div>}
 				</h2>
 
-				<p>{product.description}</p>
+				<p>{product.description.length > 100 ? product.description.substring(0, 100) + "..." : product.description}</p>
 				<PriceTag price={product.price} />
 			</div>
 		</Link>
