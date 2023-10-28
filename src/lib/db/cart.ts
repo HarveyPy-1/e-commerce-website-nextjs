@@ -31,7 +31,7 @@ export async function getCart(): Promise<ShoppingCart | null> {
 	const localCartId = cookies().get("localCartId")?.value;
 	const cart = localCartId
 		? await prisma.cart.findUnique({
-				where: { id: localCartId }, // First you get the cartID
+				where: { id: localCartId }, // First you get the cartID from local storage
 				include: { items: { include: { product: true } } }, //Next, you include the cart items that correspond with the id from the cartItem db, then go another level deep and add include the products details from the product db.
 		  })
 		: null;
