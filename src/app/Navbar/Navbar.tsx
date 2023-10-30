@@ -20,7 +20,7 @@ const Navbar = async () => {
     const cart = await getCart()
 
 	return (
-		<div className="bg-base-100">
+		<div className="bg-blue-400">
 			<div className="navbar max-w-7xl m-auto flex-col sm:flex-row gap-2">
 				<div className="flex-1">
 					<Link href="/" className="btn btn-ghost text-xl normal-case">
