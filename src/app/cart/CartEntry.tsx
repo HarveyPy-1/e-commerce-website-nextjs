@@ -28,7 +28,7 @@ export default function CartEntry({
 
 	return (
 		<div>
-			<div className="flex flex-wrap items-center gap-3 mb-4">
+			<div className="flex flex-wrap items-center gap-3">
 				<Image
 					src={product.imageUrl}
 					alt={product.name}
@@ -37,7 +37,7 @@ export default function CartEntry({
 					className="rounded-lg"
 				/>
 				<div>
-					<Link href={`/product/${product.id}`} className="font-bold">
+					<Link href={`/products/${product.id}`} className="font-bold">
 						{product.name}
 					</Link>
 					<div>Price: {formatPrice(product.price)}</div>
@@ -61,8 +61,8 @@ export default function CartEntry({
 						{isPending && <span className="loading loading-spinner loading-sm" />}
 					</div>
 				</div>
-				<div className="divider" />
 			</div>
+				<div className="divider" />
 		</div>
 	);
 }
