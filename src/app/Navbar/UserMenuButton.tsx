@@ -28,14 +28,12 @@ const UserMenuButton = ({ session }: UserMenuButtonProps) => {
 				) : (
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						className="inline-block h-5 w-5 stroke-current">
+						width="24"
+						height="24"
+						viewBox="0 0 24 24">
 						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+							fill="currentColor"
+							d="M12 21v-2h7V5h-7V3h7q.825 0 1.413.588T21 5v14q0 .825-.588 1.413T19 21h-7Zm-2-4l-1.375-1.45l2.55-2.55H3v-2h8.175l-2.55-2.55L10 7l5 5l-5 5Z"
 						/>
 					</svg>
 				)}

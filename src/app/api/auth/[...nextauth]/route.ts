@@ -1,3 +1,4 @@
+import { mergeAnonCartToUserCart } from "@/lib/db/cart";
 import { prisma } from "@/lib/db/prisma";
 import { env } from "@/lib/env";
 import { PrismaAdapter } from "@auth/prisma-adapter";
@@ -13,6 +14,17 @@ export const authOptions: NextAuthOptions = {
 			clientSecret: env.GOOGLE_CLIENT_SECRET,
 		}),
 	],
+	callbacks: {
+		session({ session, user }) {
+			session.user.id = user.id;
+			return session;
+		},
+	},
+	events: {
+		async signIn({ user }) {
+			await mergeAnonCartToUserCart(user.id);
+		},
+	},
 };
 
 const handler = NextAuth(authOptions);
