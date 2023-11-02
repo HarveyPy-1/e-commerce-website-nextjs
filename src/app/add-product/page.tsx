@@ -1,6 +1,8 @@
 import FormSubmitButton from "@/components/FormSubmitButton";
 import { prisma } from "@/lib/db/prisma";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
 	title: "Add Product - FlowMazon",
@@ -9,6 +11,13 @@ export const metadata = {
 // This code never gets to the client, this is the same as setting up an API route separate from our client code. This code is executed in the server only.
 async function addProduct(formData: FormData) {
 	"use server";
+
+	//Protect button with login
+	const session = await getServerSession(authOptions);
+
+	if (!session) {
+		redirect("api/auth/signin?callbackUrl=/add-product");
+	}
 
 	const name = formData.get("name")?.toString();
 	const description = formData.get("description")?.toString();
@@ -26,7 +35,14 @@ async function addProduct(formData: FormData) {
 	redirect("/");
 }
 
-export default function AddProductPage() {
+export default async function AddProductPage() {
+	//Protect route with login
+	const session = await getServerSession(authOptions);
+
+	if (!session) {
+		redirect("api/auth/signin?callbackUrl=/add-product");
+	}
+
 	return (
 		<div>
 			<h1 className="text-lg mb-3 font-bold">Add Product</h1>
@@ -57,9 +73,7 @@ export default function AddProductPage() {
 					name="price"
 					placeholder="Price"
 				/>
-				<FormSubmitButton className="btn-block">
-					Add Product
-				</FormSubmitButton>
+				<FormSubmitButton className="btn-block mb-32">Add Product</FormSubmitButton>
 			</form>
 		</div>
 	);

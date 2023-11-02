@@ -21,6 +21,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<SessionProvider>
+					{/*Because we are fetching all our data server side, we don't need this session provider wrap. But it's still good to put it incase a client side needs it */}
 					<Navbar />
 					<main className="p-4 max-w-7xl m-auto min-w-[300px]">{children}</main>
 					<Footer />
