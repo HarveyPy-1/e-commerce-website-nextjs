@@ -1,5 +1,5 @@
 "use server";
-
+//Check for and delete abandoned cart with no userid and an old updatedAt
 import { createCart, getCart } from "@/lib/db/cart";
 import { prisma } from "@/lib/db/prisma";
 import { revalidatePath } from "next/cache";
@@ -14,25 +14,42 @@ export async function updateProductQuantity(
 
 	if (quantity === 0) {
 		if (itemInCart) {
-			await prisma.cartItem.delete({
-				where: { id: itemInCart.id },
+			
+			await prisma.cart.update({
+				where: { id: cart.id },
+				data: {
+					items: {
+						delete: { id: itemInCart.id },
+					},
+				},
 			});
 		}
 	} else {
 		if (itemInCart) {
-			await prisma.cartItem.update({
-				where: { id: itemInCart.id },
-                data: {quantity}
+			await prisma.cart.update({
+				where: { id: cart.id },
+				data: {
+					items: {
+						update: {
+							where: { id: itemInCart.id },
+							data: { quantity },
+						},
+					},
+				},
 			});
 		} else {
-            await prisma.cartItem.create({
-                data: {
-                    cartId: cart.id,
-                    productId,
-                    quantity
-                }
-            })
-        }
+			await prisma.cart.update({
+				where: { id: cart.id },
+				data: {
+					items: {
+						create: {
+							productId,
+							quantity,
+						},
+					},
+				},
+			});
+		}
 	}
-    revalidatePath("/cart")
+	revalidatePath("/cart");
 }

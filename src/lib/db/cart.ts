@@ -79,7 +79,6 @@ export async function getCart(): Promise<ShoppingCart | null> {
 
 //Merge offline cart to logged in cart
 export async function mergeAnonCartToUserCart(userId: string) {
-
 	//Get the id of the offline cart
 	const localCartId = cookies().get("localCartId")?.value;
 
@@ -115,15 +114,20 @@ export async function mergeAnonCartToUserCart(userId: string) {
 			});
 
 			// Finally, map the contents of the merged cart to the user cart
-			await tx.cartItem.createMany({
-				data: mergedCartItems.map((item) => ({
-					cartId: userCart.id,
-					productId: item.productId,
-					quantity: item.quantity,
-				})),
+			await tx.cart.update({
+				where: { id: userCart.id },
+				data: {
+					items: {
+						createMany: {
+							data: mergedCartItems.map((item) => ({
+								productId: item.productId,
+								quantity: item.quantity,
+							})),
+						},
+					},
+				},
 			});
 		} else {
-
 			// Else, if no user cart, create one from the offline cart
 			await tx.cart.create({
 				data: {
