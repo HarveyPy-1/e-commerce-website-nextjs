@@ -34,7 +34,7 @@ const Footer = () => {
 						<Image src={logo} alt="logo" height={40} width={40} />
 					</Link>
 					<p>
-						FlowMazon E-Commerce Ltd. <br />
+						MarketHub E-Commerce Ltd. <br />
 						{`Copyright ©️ ${year} - All rights reserved!`}
 					</p>
 				</aside>

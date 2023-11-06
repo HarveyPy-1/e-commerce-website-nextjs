@@ -1,4 +1,5 @@
 import ProductCard from "@/components/ProductCard";
+import ProductCardSearch from "@/components/ProductCardSearch";
 import { prisma } from "@/lib/db/prisma";
 import { Metadata } from "next";
 
@@ -10,7 +11,7 @@ export function generateMetadata({
 	searchParams: { query },
 }: SearchPageProps): Metadata {
 	return {
-		title: `Search: "${query}" | FlowMazon`,
+		title: `Search: "${query}" | MarketHub`,
 	};
 }
 
@@ -32,7 +33,7 @@ const SearchPage = async ({ searchParams: { query } }: SearchPageProps) => {
 	return (
 		<div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
 			{products.map((product) => (
-				<ProductCard product={product} key={product.id} />
+				<ProductCardSearch query={query} product={product} key={product.id} />
 			))}
 		</div>
 	);

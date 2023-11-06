@@ -5,7 +5,7 @@ import { formatPrice } from "@/lib/db/formatPrice";
 import Link from "next/link";
 
 export const metadata = {
-	title: "Your Cart | FlowMazon",
+	title: "Your Cart | MarketHub",
 };
 
 const CartPage = async () => {

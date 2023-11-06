@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/ecommerce logo.png";
 import { redirect } from "next/navigation";
 import { getCart } from "@/lib/db/cart";
 import ShoppingCartButton from "./ShoppingCartButton";
@@ -24,11 +24,11 @@ const Navbar = async () => {
 
 	return (
 		<div className="bg-blue-400">
-			<div className="navbar max-w-7xl m-auto flex-col sm:flex-row gap-2">
+			<div className="navbar m-auto flex-col sm:flex-row gap-2">
 				<div className="flex-1">
 					<Link href="/" className="btn btn-ghost text-xl normal-case">
 						<Image src={logo} alt="logo" height={40} width={40} />
-						FlowMazon
+						MarketHub
 					</Link>
 				</div>
 				<div className="flex-none gap-2">
@@ -36,7 +36,7 @@ const Navbar = async () => {
 						<div className="form-control">
 							<input
 								name="searchQuery"
-								placeholder="Search"
+								placeholder="Search products"
 								className="input input-bordered w-full min-w-[100px]"
 							/>
 						</div>

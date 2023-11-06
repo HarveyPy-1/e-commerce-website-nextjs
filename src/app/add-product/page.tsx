@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
-	title: "Add Product - FlowMazon",
+	title: "Add Product - MarketHub",
 };
 
 // This code never gets to the client, this is the same as setting up an API route separate from our client code. This code is executed in the server only.

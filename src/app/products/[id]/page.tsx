@@ -26,7 +26,7 @@ export async function generateMetadata({
 }: ProductPageProps): Promise<Metadata> {
 	const product = await getProduct(id);
 	return {
-		title: product.name + " | FlowMazon",
+		title: product.name + " | MarketHub",
 		description: product.description,
 		//OpenGraph is used to customize how your link (image, description) looks when you share it on social media
 		openGraph: {
@@ -54,7 +54,10 @@ export default async function ProductPage({
 				<h1 className="text-5xl font-bold">{product.name}</h1>
 				<PriceTag price={product.price} className="mt-4" />
 				<p className="py-6">{product.description}</p>
-                <AddToCartButton productId={product.id} incrementProductQuantity={incrementProductQuantity}/>
+				<AddToCartButton
+					productId={product.id}
+					incrementProductQuantity={incrementProductQuantity}
+				/>
 			</div>
 		</div>
 	);
