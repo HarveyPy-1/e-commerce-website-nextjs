@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "MarketHub",
-	description: "We make your wallet cry!",
+	description: "Whatever you want, we've got it!",
 };
 
 export default function RootLayout({
